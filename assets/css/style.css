@@ -1,0 +1,81 @@
+body {
+	background: url("../images/background1.jpg") no-repeat fixed;
+	background-size: 100% 100%;
+	color: #66CDAA;
+}
+
+footer {
+	font-size: 14px;
+	font-family: 'Crafty Girls', cursive;
+	text-align: center;
+	padding: 10px 10px 10px 10px;
+	clear: both;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 30px;
+	background: black;
+}
+
+#gifs-show-here {
+	display: flex;
+	width: 90%;
+	padding-left: 120px;
+	flex-direction: row;
+	flex-wrap: wrap;
+	text-align: center;
+	box-sizing: inherit;
+	border: 3px solid none;
+	font-family: 'Crafty Girls', cursive;
+	color: white;
+}
+.myheader {
+	padding-top: 15px;
+	text-align: center;
+	background: black;
+	height: 60px;
+	font-size: 40px;
+	font-family: 'Crafty Girls', cursive;
+}
+
+#subject-input {
+	border: 3px solid;
+	padding-left: 10%;
+	height: 20px;
+	background: #ADD8E6;
+}
+
+#subject-form {
+	text-align: center;
+	font-size: 14px;
+	font-family: 'Crafty Girls', cursive;
+}
+
+#adding-subject {
+	color: #DCDCDC;
+	background-color: black;
+	font-size: 18px;
+	font-family: 'Crafty Girls', cursive;
+	border-radius: 70px;
+	padding: 0;
+}
+ 
+#country-button {
+	text-align: center;
+}
+
+.inputCountry {
+	color: #DCDCDC;
+	background-color: black;
+	font-size: 14px;
+	text-align: center;
+	font-family: 'Crafty Girls', cursive;
+	border-radius: 70px;
+}
+
+.inputCountry:hover {
+	cursor:pointer;
+	background-color: #66CDAA;
+}
+
+

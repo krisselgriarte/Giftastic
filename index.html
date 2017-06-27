@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head> 
+
+	<title>GIPHY API | Krissel Griarte</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Crafty+Girls" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+</head>
+
+<body>
+
+<!-- This is my header -->
+
+	<header class="myheader">GIPHY API Application</header>
+
+	<br>
+<!-- This is a submit for a new button -->
+
+	<form id="subject-form">
+		<input type="text" id="subject-input">
+		<input id="adding-subject" type="submit" value="Add Your Own!">
+	</form>
+
+	<br>
+
+<!-- These are my country buttons -->
+	<div id="country-button">
+
+		<button class="inputCountry"data-countries="philippines">Philippines</button>
+		<button class="inputCountry"data-countries="america">America</button>
+		<button class="inputCountry"data-countries="mexico">Mexico</button>
+		<button class="inputCountry"data-countries="japan">Japan</button>
+		<button class="inputCountry"data-countries="italy">Italy</button>
+		<button class="inputCountry"data-countries="france">France</button>
+		<button class="inputCountry"data-countries="israel">Israel</button>
+		<button class="inputCountry"data-countries="korea">Korea</button>
+		<button class="inputCountry"data-countries="russia">Russia</button>
+		<button class="inputCountry"data-countries="germany">Germany</button>
+
+	</div>
+
+	<div id="gifs-show-here"></div>
+
+<!-- Javascript and jQuery startes here -->
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	 <script type="text/javascript">
+
+
+// This is adding buttons in HTML //
+
+		$("#adding-subject").on("click", function(event) {
+			event.preventDefault();
+
+			var newButton = $("#subject-input").val().trim();
+			var oneButton = $("<button>");
+			if (newButton == "") {
+				return 0;
+			} else {oneButton.attr("data-countries", newButton);
+					oneButton.text(newButton);
+					oneButton.addClass("inputCountry");
+					$("#country-button").prepend(oneButton);
+
+			}
+
+			oneButton.attr("data-countries", newButton);
+			oneButton.text(newButton);
+			oneButton.addClass("inputCountry");
+			$("#country-button").prepend(oneButton);
+
+			console.log(newButton);
+			console.log(oneButton);
+			
+
+		});
+
+///// this will show each GIFs if they click on a country or GIF created//////
+
+  		$(document).on("click", ".inputCountry", function() {
+       	 var country = $(this).attr("data-countries");
+      		var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + country + "&api_key=dc6zaTOxFJmzC&limit=6&rating=pg";
+      		$("#gifs-show-here").empty();
+
+       	$.ajax({
+            url: queryURL,
+            method: "GET"
+          })
+          .done(function(response) {
+              var results = response.data;
+				console.log(response);
+
+            for (var i = 0; i < results.length; i++) {
+              var gifDiv = $("<div class='item'>");
+
+              var rating = results[i].rating;
+
+              var p = $("<p>").text("Rating: " + rating);
+
+              var countryImage = $("<img class='myCountry'>");
+              countryImage.attr("src", results[i].images.fixed_height.url);
+              countryImage.attr("data-animate", results[i].images.fixed_height.url);
+              countryImage.attr("data-still", results[i].images.fixed_height_still.url);
+              countryImage.attr("data-state", "animate");
+
+
+               gifDiv.prepend(p);
+               gifDiv.prepend(countryImage);
+
+              $("#gifs-show-here").append(gifDiv);
+          }
+        });
+      });
+
+///// This is will pause each GIF ///////
+
+  		 	$(document).on("click", ".myCountry", function() {
+      		var state = $(this).data("state");
+      			if (state === "still") {
+        			$(this).attr("src", $(this).attr("data-animate"));
+         			 $(this).data("state","animate");
+      			} else {
+        			$(this).attr("src", $(this).attr("data-still"));
+          			$(this).data("state", "still");
+      			}
+       });
+ 
+
+
+     </script>
+
+
+</body>
+	<footer>@Copyright 2017 | Krissel Griarte</footer>
+</html>

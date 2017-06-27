@@ -29,7 +29,7 @@
 
   		$(document).on("click", ".inputCountry", function() {
        	 var country = $(this).attr("data-countries");
-      		var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + country + "&api_key=dc6zaTOxFJmzC&limit=6&rating=pg";
+      		var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + country + "&api_key=dc6zaTOxFJmzC&limit=6&rating=pg";
       		$("#gifs-show-here").empty();
 
        	$.ajax({
